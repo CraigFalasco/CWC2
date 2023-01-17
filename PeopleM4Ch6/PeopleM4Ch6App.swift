@@ -12,6 +12,7 @@ struct PeopleM4Ch6App: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(Model())
         }
     }
 }
