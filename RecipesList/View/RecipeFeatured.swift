@@ -41,7 +41,7 @@ struct RecipeFeatured: View {
 
                                     Text(model.recipes[index].name)
                                         .font(.title3)
-                                        .padding(10)
+                                        .padding(.bottom, 10)
  
                                 }
                             }
