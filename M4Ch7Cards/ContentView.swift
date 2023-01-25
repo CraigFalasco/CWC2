@@ -22,9 +22,8 @@ struct ContentView: View {
                                 red: Double.random(in: 0..<1),
                                 green: Double.random(in: 0..<1),
                                 blue: Double.random(in: 0..<1),
-                                opacity: 0.50
+                                opacity: 0.75
                             )
-                            
                             Rectangle()
                                 .foregroundColor(randColor)
                                 .cornerRadius(20)
