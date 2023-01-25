@@ -13,12 +13,12 @@ struct RecipeFeatured: View {
     
     var body: some View {
         
-        VStack {
+        VStack (alignment: .leading){
             
             Text("Featured Recipes")
                 .font(.largeTitle)
-                .padding(10)
-                .padding(.top, 40)
+                .bold()
+                .padding([.top, .leading], 20)
                 
             
             GeometryReader { geo in
@@ -63,7 +63,7 @@ struct RecipeFeatured: View {
                 Text("Total Time: ")
                 Text("Servings: ")
             }
-            .padding(.bottom, 20.0)
+            .padding([.leading, .bottom], 20.0)
         }
         
     }

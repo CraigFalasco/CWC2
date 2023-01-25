@@ -14,7 +14,7 @@ struct RecipeTabView: View {
                 .tabItem {
                     VStack {
                         Image(systemName: "list.number")
-                        Text("recipe list")
+                        Text("Recipe list")
                     }
                 }
             RecipeFeatured()

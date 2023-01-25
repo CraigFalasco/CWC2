@@ -12,31 +12,44 @@ struct RecipeListView: View {
     @EnvironmentObject var model:RecipeVuModel
     
     var body: some View {
-
-            NavigationView {
+        
+        NavigationView {
+            
+            VStack(alignment: .leading) {
                 
-                List(model.recipes) { r in
-                    
-                    NavigationLink(
-                        destination: RecipeDetail(recipe:r),
-                        label: {
+                Text("All Recipes")
+                    .font(.largeTitle)
+                    .bold()
+                    .padding(.top, 20)
+                
+                ScrollView {
+                    LazyVStack (alignment: .leading) {
+                        ForEach(model.recipes) { r in
                             
-                            HStack(spacing: 20.0) {
-                                Image(r.image)
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 75, height: 75, alignment: .center)
-                                    .clipped()
-                                    .cornerRadius(5)
-                                Text(r.name)
-                            }
-                        })
+                            NavigationLink(
+                                destination: RecipeDetail(recipe:r),
+                                label: {
+                                    HStack(spacing: 20.0) {
+                                        Image(r.image)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 75, height: 75, alignment: .center)
+                                            .clipped()
+                                            .cornerRadius(5)
+                                        Text(r.name)
+                                            .foregroundColor(.black)
+                                    }
+                                })
+                        }
+                    }
                 }
-                // this is to display the recipe name in the detail veiw. Keep in mind that it will only show when switching from list to detail.
-                .navigationBarTitle("All Recipes")
             }
+            .padding(.leading)
+            // this is to display the recipe name in the detail veiw. Keep in mind that it will only show when switching from list to detail.
+            .navigationBarHidden(true)
         }
     }
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
