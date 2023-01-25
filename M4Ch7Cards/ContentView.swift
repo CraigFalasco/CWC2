@@ -9,16 +9,6 @@ import SwiftUI
 
 struct ContentView: View {
     
-    var color : Color {
-        return Color (
-            .sRGB,
-            red: Double.random(in: 0..<1),
-            green: Double.random(in: 0..<1),
-            blue: Double.random(in: 0..<1),
-            opacity: 0.75)
-    }
-            
-        
         var body: some View {
             
             TabView {
@@ -27,9 +17,17 @@ struct ContentView: View {
                     GeometryReader { geometry in
                         
                         ZStack {
+                            
+                            let randColor = Color(
+                                red: Double.random(in: 0..<1),
+                                green: Double.random(in: 0..<1),
+                                blue: Double.random(in: 0..<1),
+                                opacity: 0.50
+                            )
+                            
                             Rectangle()
-                                .foregroundColor(color)
-                                .cornerRadius(10)
+                                .foregroundColor(randColor)
+                                .cornerRadius(20)
                                 .shadow(radius: 10)
                             
                             Image(systemName: "\(x).circle")
@@ -38,15 +36,12 @@ struct ContentView: View {
                                 .padding()
                         }
                         .frame(height: max(geometry.size.height - 50, 100))
-
                     }
                 }
-                .padding()
-
+                .padding(20)
             }
             .tabViewStyle(PageTabViewStyle())
             .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
-            
         }
 }
 
