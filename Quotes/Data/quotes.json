@@ -1,0 +1,69 @@
+[{
+        "author": "Martin Luther King Jr.",
+        "bio": "1929 - 1968",
+        "image": "MartinLutherKingJr",
+        "quotes": [
+            "We know through painful experience that freedom is never voluntarily given by the oppressor, it must be demanded by the oppressed.",
+            "The ultimate measure of a man is not where he stands in moments of comfort and convenience, but where he stands at times of challenge and controversy.",
+            "True peace is not merely the absence of tension; it is the presence of justice.",
+            "Injustice anywhere is a threat to justice everywhere. We are caught in an inescapable network of mutuality, tied in a single garment of destiny. Whatever affects one directly, affects all indirectly.",
+            "Out of the mountain of despair, a stone of hope.",
+            "Intelligence plus character — that is the goal of true education.",
+            "Darkness cannot drive out darkness; only light can do that. Hate cannot drive out hate; only love can do that.",
+            "You don't have to see the whole staircase, just take the first step."
+        ]
+    },
+    {
+        "author": "Albert Einstein",
+        "bio": "1879 - 1955",
+        "image": "AlbertEinstein",
+        "quotes": [
+            "Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.",
+            "There are only two ways to live your life. One is as though nothing is a miracle. The other is as though everything is a miracle.",
+            "If you can't explain it to a six year old, you don't understand it yourself.",
+            "Life is like riding a bicycle. To keep your balance, you must keep moving.",
+            "Anyone who has never made a mistake has never tried anything new.",
+            "A clever person solves a problem. A wise person avoids it."
+        ]
+    },
+    {
+        "author": "Alice Walker",
+        "bio": "1944 - present",
+        "image": "AliceWalker",
+        "quotes": [
+            "Look closely at the present you are constructing: it should look like the future you are dreaming.",
+            "Whenever you are creating beauty around you, you are restoring your own soul.",
+            "No person is your friend who demands your silence, or denies your right to grow.",
+            "The most common way people give up their power is by thinking they don't have any.",
+            "There is no graceful way to carry hatred.",
+            "I don’t need a certain number of friends, just a number of friends I can be certain of."
+        ]
+    },
+    {
+        "author": "Ashleigh Brilliant",
+        "bio": "1933 - present",
+        "image": "AshleighBrilliant",
+        "quotes": [
+            "It’s good to know that if I behave strangely society will take full responsibility for me.",
+            "Strangely enough, this is the past that somebody in the future is longing to go back to.",
+            "I always take my vitamins in alphabetical order. It may not be necessary but why take chances.",
+            "My opinions may have changed, but not the fact that I’m right.",
+            "There is no graceful way to carry hatred.",
+            "If you can’t go around it, over it, or through it, you had better negotiate with it.",
+            "My sources are unreliable, but their information is fascinating."
+        ]
+    },
+    {
+        "author": "James Baldwin",
+        "bio": "1924 - 1987",
+        "image": "JamesBaldwin",
+        "quotes": [
+            "I love America more than any other country in this world, and, exactly for this reason, I insist on the right to criticize her perpetually.",
+            "People who treat other people as less than human must not be surprised when the bread they have cast on the waters comes floating back to them, poisoned.",
+            "People are full of dirty words. The only time they do not use them, most people, I mean, is when they are describing something dirty.",
+            "Not everything that is faced can be changed. But nothing can be changed until it is faced.",
+            "If the word integration means anything, this is what it means: that we, with love, shall force our brothers to see themselves as they are, to cease fleeing from reality and begin to change it.",
+            "A child cannot be taught by anyone who despises him, and a child cannot afford to be fooled."
+        ]
+    }
+]
