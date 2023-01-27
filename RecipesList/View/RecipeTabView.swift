@@ -18,6 +18,7 @@ struct RecipeTabView: View {
                     }
                 }
             RecipeFeatured()
+            
                 .tabItem {
                     VStack {
                         Image(systemName: "text.badge.star")

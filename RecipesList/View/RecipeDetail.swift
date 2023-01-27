@@ -11,28 +11,43 @@ struct RecipeDetail: View {
     
     // recipe is not set because it will be set by the list view, see the comment in the Preview
     var recipe:Recipe
+
+    @State var selectedServingSize = 2
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
                 
-            Text(recipe.name)
-                .font(.largeTitle)
-                .bold()
-                .padding(.top, 20)
-            
-            Image(recipe.image)
-                .resizable()
-                .scaledToFit()
-            
-            
+                Text(recipe.name)
+                    .font(.largeTitle)
+                    .bold()
+                    .padding(.top, 20)
+                
+                Image(recipe.image)
+                    .resizable()
+                    .scaledToFit()
+                
+                VStack(alignment: .leading) {
+                    Text("Select serving size")
+                        .font(.title)
+                    Picker(" ", selection: $selectedServingSize) {
+                        
+                        Text("2").tag(2)
+                        Text("4").tag(4)
+                        Text("6").tag(6)
+                        Text("8").tag(8)
+                    }
+                    .pickerStyle(.segmented)
+                    .frame(width: 250)
+    
+                }
                 Text("Ingredients")
                     .font(.title)
                     .padding(.vertical)
-                    
-                    
+                
+                
                 ForEach(recipe.ingredients) { ingredient in
-                    Text(ingredient.name)
+                    Text(RecipeVuModel.getPortion(ingredient: ingredient, recipeServings: recipe.servings, targetServings: selectedServingSize) + " " + ingredient.name)
                         .padding(.vertical, 1.0)
                 }
                 Text("Directions")
@@ -43,10 +58,10 @@ struct RecipeDetail: View {
                 ForEach(0..<recipe.directions.count, id: \.self) { x in
                     Text(String(x + 1) + ". " + recipe.directions[x])
                         .padding(.bottom)
-                        
+                    
                 }
             }
-            .padding(.leading)
+            .padding(.horizontal)
         }
         .navigationBarTitle(recipe.name)
     }

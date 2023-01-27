@@ -20,4 +20,17 @@ class RecipeVuModel: ObservableObject {
         // you can also code it like this if you don't need to use "service" var more than once
         // self.recipes = DataService.getLocalData()
     }
+    
+    static func getPortion(ingredient:Ingredient, recipeServings:Int, targetServings:Int) -> String {
+        
+        // get single serving by multiplying the denominator by the recipe servings
+        
+        // get target portion by multiplying numerator by target serbings
+        
+        // reduce fraction using greatest common divisor
+        
+        // express the result as a fraction
+        
+        return String(targetServings)
+    }
 }
