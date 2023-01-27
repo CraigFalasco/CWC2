@@ -9,9 +9,12 @@ import SwiftUI
 
 struct ContentView: View {
     
+    var locArray = ["Chandler", "Tempe", "Mesa", "Phoenix", "Flagstaff", "Venus", "Mars"]
+    var ordArray = ["Lunch box", "Hamburger", "Pizza", "Tofu stir fry", "Salad", "Soup & sandwich"]
     
-    @State var locSelect = "0"
-    @State var mealSelect = "0"
+    @State var currentDate = Date()
+    @State var locSelect = 0
+    @State var mealSelect = 0
     @State var timeSelect = "0"
     
     var body: some View {
@@ -20,16 +23,15 @@ struct ContentView: View {
             Text("Ottimo Ristorante")
                 .font(.largeTitle)
                 .padding(.bottom, 50.0)
-                
             
+            // ISSUE: The first parm in Picker (label?) will not display, so the Text element had to be added
             HStack {
                 Text("Location")
-                Picker("Location", selection: $locSelect, content: {
-                    Text("Chandler").tag("1")
-                    Text("Mesa").tag("2")
-                    Text("Phoenix").tag("3")
-                    Text("Tempe").tag("4")
-                    Text("Flagstaff").tag("5")
+                Picker("Location", selection: $locSelect, content:
+                {
+                    ForEach(0..<locArray.count, id: \.self) { l in
+                        Text(locArray[l])
+                    }
                 })
                 .pickerStyle(.menu)
             }
@@ -37,49 +39,42 @@ struct ContentView: View {
             
             HStack {
                 Text("Order")
-                Picker("Order", selection: $mealSelect, content: {
-                    Text("Lunch box").tag("1")
-                    Text("Salad").tag("2")
-                    Text("Soup & half-sandwich").tag("3")
-                    Text("Hamburger").tag("4")
-                    Text("Tofu stir fry").tag("5")
+                Picker("Order", selection: $mealSelect, content:
+                {
+                    ForEach (0..<ordArray.count, id: \.self) { o in
+                        Text(ordArray[o])
+                    }
                 })
                 .pickerStyle(.wheel)
             }
             .padding(40.0)
             .padding(.leading, 20.0)
             
-            HStack {
-                Text("Pickup Time")
-                Picker("Pickup time", selection: $timeSelect, content: {
-                    Text("5 pm").tag("1")
-                    Text("6 pm").tag("2")
-                    Text("7 pm").tag("3")
-                    Text("8 pm").tag("4")
-                    Text("9 pm").tag("5")
+            VStack {
+                Button("Pick for me!", action: {
+                    let randLoc = Int.random(in: 0..<locArray.count)
+                    locSelect = randLoc
+                    let randMeal = Int.random(in: 0..<ordArray.count)
+                    mealSelect = randMeal
+                    // let randTime = Int.random(in: 1...5)
+                    // timeSelect = String(randTime)
+                    
                 })
-                .pickerStyle(.segmented)
+                .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+                .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color.purple/*@END_MENU_TOKEN@*/)
+                .foregroundColor(/*@START_MENU_TOKEN@*/.white/*@END_MENU_TOKEN@*/)
+                .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
             }
-            .padding(40.0)
-            .padding(.leading, 20.0)
+            .padding(40)
             
-            
-            
-            Button("Pick for me!", action: {
-                let randLoc = Int.random(in: 1...5)
-                locSelect = String(randLoc)
-                let randMeal = Int.random(in: 1...5)
-                mealSelect = String(randMeal)
-                let randTime = Int.random(in: 1...5)
-                timeSelect = String(randTime)
-                
-            })
-            .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
-            .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color.purple/*@END_MENU_TOKEN@*/)
-            .foregroundColor(/*@START_MENU_TOKEN@*/.white/*@END_MENU_TOKEN@*/)
-            .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
-            
+            DatePicker(
+                "Pickup time",
+                selection: $currentDate,
+                displayedComponents: .hourAndMinute
+            )
         }
+        .padding(40.0)
+        .padding(.leading, 20.0)
     }
 }
 
