@@ -12,7 +12,7 @@ struct RecipeDetail: View {
     // recipe is not set because it will be set by the list view, see the comment in the Preview
     var recipe:Recipe
     
-    @State var selectedServingSize = 6
+    @State var selectedServingSize = 0
     
     var body: some View {
         ScrollView {
