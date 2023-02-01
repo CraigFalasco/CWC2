@@ -17,6 +17,7 @@
             {"name": "Eggplant, peeled and thinly sliced", "num": 3},
             {"name": "Large eggs", "num": 2},
             {"name": "Italian seasoned bread crumbs", "num": 4, "unit": "cup"},
+            {"name": "Sea salt", "unit": "To taste"},
             {"name": "Spaghetti sauce", "num": 6, "unit": "cup"},
             {"name": "Mozarella cheese, shredded", "num": 2, "unit": "cup"},
             {"name": "Parmesan cheese, grated", "num": 1, "denom": 2, "unit": "cup"},

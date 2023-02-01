@@ -23,14 +23,86 @@ class RecipeVuModel: ObservableObject {
     
     static func getPortion(ingredient:Ingredient, recipeServings:Int, targetServings:Int) -> String {
         
-        // get single serving by multiplying the denominator by the recipe servings
+        let oldServing = recipeServings
+        let newServing = targetServings
+        var oldNumerator = Int()
+        var oldDenominator = Int()
+        var newNumerator = 0
+        var newDenominator = 0
+        var wholeNumber = 0
+        var remainder = 0
+        var gcd1 = 0
+        var gcd2 = 0
+        var newFractionNum = 0
+        var newFractionDenom = 0
+        var returnText = String()
+        var returnUnit = String()
         
-        // get target portion by multiplying numerator by target serbings
+        // if ther is no numerator, then the unit is usually "to taste"
+        if ingredient.num == nil {
+            return ingredient.unit ?? "to taste"
+        }
+        else {
+            oldNumerator = ingredient.num ?? 0
+        }
         
-        // reduce fraction using greatest common divisor
+        // if no denominator, default to 1
+        if ingredient.denom == nil {
+            oldDenominator = 1
+        }
+        else {
+            oldDenominator = ingredient.denom ?? 1
+        }
         
-        // express the result as a fraction
+        // the following gives us the new ingredient amount, but as a fraction that is not reduced
+        newNumerator = oldNumerator * newServing
+        newDenominator = oldDenominator * oldServing
         
-        return String(targetServings)
+        // the following gets the greatest common denominator
+        gcd1 = newNumerator
+        gcd2 = newDenominator
+        
+        while gcd1 != gcd2 {
+            if gcd1 > gcd2 {
+                gcd1 -= gcd2
+            }
+            else {
+                gcd2 -= gcd1
+            }
+        }
+        // at this point gcd1 and gcd2 are equal and they contain the gcd value
+        
+        // reduce the fraction
+        newNumerator /= gcd1
+        newDenominator /= gcd1
+        
+        // configure the return text depending on > 1, == 1, or < 1, also, if > 1 we figure out if there is an additional fractional amount, or just a whole number
+        if newNumerator > newDenominator {
+            wholeNumber = newNumerator / newDenominator
+            remainder = newNumerator % newDenominator
+            if remainder == 0 {
+                returnText = String(wholeNumber)
+            }
+            else {
+                newFractionNum = remainder
+                newFractionDenom = newDenominator
+                returnText = String(wholeNumber) + " " + String(newFractionNum) + "/" + String(newFractionDenom)
+            }
+        }
+        else if newNumerator == newDenominator {
+            wholeNumber = 1
+            returnText = String(wholeNumber)
+        }
+        else {
+            returnText = String(newNumerator) + "/" + String(newDenominator)
+        }
+        
+        if wholeNumber >= 2 && ingredient.unit != nil {
+            returnUnit = (ingredient.unit ?? "unit") + "s"
+            }
+        else {
+            returnUnit = (ingredient.unit ?? "")
+        }
+        return returnText + " " + returnUnit
     }
 }
