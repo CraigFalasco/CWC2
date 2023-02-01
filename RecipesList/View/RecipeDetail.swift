@@ -49,7 +49,7 @@ struct RecipeDetail: View {
                 
                 
                 ForEach(recipe.ingredients) { ingredient in
-                    Text(RecipeVuModel.getPortion(ingredient: ingredient, recipeServings: recipe.servings, targetServings: selectedServingSize) + " " + ingredient.name)
+                    Text(RecipeVuModel.getPortion(ingredient: ingredient, recipeServings: recipe.servings, targetServings: selectedServingSize) + " " + ingredient.name.lowercased())
                         .padding(.vertical, 1.0)
                 }
                 Text("Directions")
