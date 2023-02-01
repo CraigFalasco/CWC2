@@ -106,8 +106,13 @@ class RecipeVuModel: ObservableObject {
         }
         
         if wholeNumber >= 2 && ingredient.unit != nil {
-            returnUnit = (ingredient.unit ?? "unit") + "s"
+            if ingredient.unit == "pinch" {
+                returnUnit = (ingredient.unit ?? "unit") + "es"
             }
+            else {
+                returnUnit = (ingredient.unit ?? "unit") + "s"
+            }
+        }
         else {
             returnUnit = (ingredient.unit ?? "")
         }
