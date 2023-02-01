@@ -24,7 +24,7 @@ class RecipeVuModel: ObservableObject {
     static func getPortion(ingredient:Ingredient, recipeServings:Int, targetServings:Int) -> String {
         
         let oldServing = recipeServings
-        let newServing = targetServings
+        var newServing = Int()
         var oldNumerator = Int()
         var oldDenominator = Int()
         var newNumerator = 0
@@ -38,7 +38,15 @@ class RecipeVuModel: ObservableObject {
         var returnText = String()
         var returnUnit = String()
         
-        // if ther is no numerator, then the unit is usually "to taste"
+        // the following preps for the selection of "recipe servings" from the picker
+        if targetServings == 0 {
+            newServing = recipeServings
+        }
+        else {
+             newServing = targetServings
+        }
+        
+        // if there is no numerator, then the unit is usually "to taste"
         if ingredient.num == nil {
             return ingredient.unit ?? "to taste"
         }

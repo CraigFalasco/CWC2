@@ -28,6 +28,7 @@ struct RecipeDetail: View {
                     .scaledToFit()
                 
                 VStack(alignment: .leading) {
+                    Text("Recipe servings: " + String(recipe.servings))
                     Text("Select serving size")
                         .font(.title)
                     Picker(" ", selection: $selectedServingSize) {
@@ -36,9 +37,10 @@ struct RecipeDetail: View {
                         Text("4").tag(4)
                         Text("6").tag(6)
                         Text("8").tag(8)
+                        Text("Recipe").tag(0)
                     }
                     .pickerStyle(.segmented)
-                    .frame(width: 250)
+                    .frame(width: 300)
     
                 }
                 Text("Ingredients")
