@@ -61,7 +61,7 @@ struct RecipeFeatured: View {
                 Text("Prep Time: ")
                 Text("Cook Time: ")
                 Text("Total Time: ")
-                Text("Highlights: ")
+                Text("highlights will go here")
             }
             .padding([.leading, .bottom], 20.0)
         }
