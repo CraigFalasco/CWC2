@@ -26,10 +26,13 @@ struct RecipeDetail: View {
                 Image(recipe.image)
                     .resizable()
                     .scaledToFit()
+                    .clipped()
+                    .cornerRadius(10)
+                    .shadow(color: .black, radius: 5, x: -5, y: 5)
                 
                 VStack(alignment: .leading) {
-                    Text("Recipe servings: " + String(recipe.servings))
-                    Text("Select serving size")
+                    Text("oringinal recipe servings: " + String(recipe.servings))
+                    Text("select serving size")
                         .font(.title)
                     Picker(" ", selection: $selectedServingSize) {
                         
@@ -37,7 +40,7 @@ struct RecipeDetail: View {
                         Text("4").tag(4)
                         Text("6").tag(6)
                         Text("8").tag(8)
-                        Text("Recipe").tag(0)
+                        Text("original").tag(0)
                     }
                     .pickerStyle(.segmented)
                     .frame(width: 300)
@@ -65,7 +68,7 @@ struct RecipeDetail: View {
             }
             .padding(.horizontal)
         }
-        .navigationBarTitle(recipe.name)
+       // .navigationBarTitle(recipe.name)
     }
 }
 struct RecipeDetail_Previews: PreviewProvider {

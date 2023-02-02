@@ -35,7 +35,7 @@ struct RecipeListView: View {
                                             .scaledToFill()
                                             .frame(width: 75, height: 75, alignment: .center)
                                             .clipped()
-                                            .cornerRadius(5)
+                                            .cornerRadius(10)
                                         Text(r.name)
                                             .foregroundColor(.black)
                                     }
@@ -45,8 +45,8 @@ struct RecipeListView: View {
                 }
             }
             .padding(.leading)
-            // this is to display the recipe name in the detail veiw. Keep in mind that it will only show when switching from list to detail.
-            .navigationBarHidden(true)
+            // this is to display the recipe name in the detail veiw. Keep in mind that it will only show when switching from list to detail,commented out right now and the detail view displays the name as text
+            //.navigationBarHidden(true)
         }
     }
 }

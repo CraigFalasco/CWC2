@@ -66,7 +66,7 @@ class RecipeVuModel: ObservableObject {
         newNumerator = oldNumerator * newServing
         newDenominator = oldDenominator * oldServing
         
-        // the following gets the greatest common denominator
+        // the following gets the greatest common divisor
         gcd1 = newNumerator
         gcd2 = newDenominator
         
@@ -105,12 +105,12 @@ class RecipeVuModel: ObservableObject {
             returnText = String(newNumerator) + "/" + String(newDenominator)
         }
         
-        if wholeNumber >= 2 && ingredient.unit != nil {
-            returnUnit = (ingredient.unit ?? "unit") + "(s)"
+        if ingredient.unit != nil {
+            returnUnit = (ingredient.unit ?? "unit")
             }
         else {
             returnUnit = (ingredient.unit ?? "")
         }
-        return returnText + " " + returnUnit.lowercased()
+        return returnText + " " + returnUnit
     }
 }
