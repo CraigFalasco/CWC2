@@ -19,7 +19,7 @@ struct RecipeDetail: View {
             VStack(alignment: .leading) {
                 
                 Text(recipe.name)
-                    .font(.largeTitle)
+                    .font(Font.custom("Avenir Heavy", size: 24))
                     .bold()
                     .padding(.top, 20)
                 
@@ -32,8 +32,9 @@ struct RecipeDetail: View {
                 
                 VStack(alignment: .leading) {
                     Text("oringinal recipe servings: " + String(recipe.servings))
+                        .font(Font.custom("Avenir", size: 22))
                     Text("select serving size")
-                        .font(.title)
+                        .font(Font.custom("Avenir", size: 28))
                     Picker(" ", selection: $selectedServingSize) {
                         
                         Text("2").tag(2)
@@ -44,24 +45,27 @@ struct RecipeDetail: View {
                     }
                     .pickerStyle(.segmented)
                     .frame(width: 300)
+                    .font(Font.custom("Avenir", size: 22))
     
                 }
                 Text("Ingredients")
-                    .font(.title)
+                    .font(Font.custom("Avenir Heavy", size: 22))
                     .padding(.vertical)
                 
                 
                 ForEach(recipe.ingredients) { ingredient in
                     Text(RecipeVuModel.getPortion(ingredient: ingredient, recipeServings: recipe.servings, targetServings: selectedServingSize) + " " + ingredient.name.lowercased())
                         .padding(.vertical, 1.0)
+                        .font(Font.custom("Avenir", size: 18))
                 }
                 Text("Directions")
-                    .font(.title)
+                    .font(Font.custom("Avenir Heavy", size: 22))
                     .padding(.vertical)
                 
                 // this ForEach gets the index (x) and uses it to put a line number on each deirection step. (x +1)
                 ForEach(0..<recipe.directions.count, id: \.self) { x in
                     Text(String(x + 1) + ". " + recipe.directions[x])
+                        .font(Font.custom("Avenir", size: 18))
                         .padding(.bottom)
                     
                 }

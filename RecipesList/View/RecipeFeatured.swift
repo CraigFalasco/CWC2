@@ -20,7 +20,7 @@ struct RecipeFeatured: View {
         VStack (alignment: .leading){
             
             Text("Featured Recipes")
-                .font(.largeTitle)
+                .font(Font.custom("Avenir Heavy", size: 28))
                 .bold()
                 .padding([.top, .leading], 20)
                 
@@ -46,7 +46,7 @@ struct RecipeFeatured: View {
                                             .clipped()
 
                                         Text(featuredRecipes[index].name)
-                                            .font(.title3)
+                                            .font(Font.custom("Avenir Heavy", size: 24))
                                             .fontWeight(.bold)
                                             .padding(.bottom, 10)
                                     }
