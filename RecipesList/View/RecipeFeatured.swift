@@ -10,8 +10,12 @@ import SwiftUI
 struct RecipeFeatured: View {
     
     @EnvironmentObject var model:RecipeVuModel
+    @State var isDetailViewShowing = false
+    @State var tabSelectionIndex = 0
     
     var body: some View {
+        
+        let featuredRecipes = model.recipes.filter({ $0.featured })
         
         VStack (alignment: .leading){
             
@@ -23,32 +27,36 @@ struct RecipeFeatured: View {
             
             GeometryReader { geo in
                 
-                TabView {
+                TabView (selection: $tabSelectionIndex) {
                     
-                    ForEach (0..<model.recipes.count, id: \.self) { index in
-                        if model.recipes[index].featured == true {
+                    ForEach (0..<featuredRecipes.count, id: \.self) { index in
                             
-                            ZStack {
+                        Button(action: {
+                                self.isDetailViewShowing = true
                                 
-                                Rectangle()
-                                    .foregroundColor(.white)
-                                    
-                                VStack(spacing: 0) {
-                                    Image(model.recipes[index].image)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .clipped()
+                            }, label: {
+                                ZStack {
+                                    Rectangle()
+                                        .foregroundColor(.white)
+                                        
+                                    VStack(spacing: 0) {
+                                        Image(featuredRecipes[index].image)
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fill)
+                                            .clipped()
 
-                                    Text(model.recipes[index].name)
-                                        .font(.title3)
-                                        .padding(.bottom, 10)
- 
+                                        Text(featuredRecipes[index].name)
+                                            .font(.title3)
+                                            .fontWeight(.bold)
+                                            .padding(.bottom, 10)
+                                    }
                                 }
-                            }
+                            })
+                            .tag(index)
+                            .buttonStyle(PlainButtonStyle())
                             .frame(width: geo.size.width - 40, height: geo.size.height - 100, alignment: .center)
                             .cornerRadius(10)
                             .shadow(color: .black, radius: 10, x: -5, y: 5)
-                        }
                     }
                 }
                 // this makes the tab view swipe-able
@@ -58,14 +66,17 @@ struct RecipeFeatured: View {
             }
             
             VStack(alignment: .leading ,spacing: 10) {
-                Text("Prep Time: ")
-                Text("Cook Time: ")
-                Text("Total Time: ")
-                Text("highlights will go here")
+                RecipeHighlights(highlights: model.recipes[tabSelectionIndex].highlights)
+                Text("Prep Time: " + model.recipes[tabSelectionIndex].prepTime)
+                Text("Cook Time: " + model.recipes[tabSelectionIndex].cookTime)
+                Text("Total Time: " + model.recipes[tabSelectionIndex].totalTime)
             }
             .padding([.leading, .bottom], 20.0)
+            .fontWeight(.bold)
         }
-        
+        .sheet(isPresented: $isDetailViewShowing) {
+            RecipeDetail(recipe: featuredRecipes[tabSelectionIndex])
+        }
     }
 }
 
