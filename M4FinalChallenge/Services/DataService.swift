@@ -14,7 +14,7 @@ class DataService {
     func getLocalData() -> [Book] {
         
         // get url path to the json file
-        let pathString = Bundle.main.path(forResource: "Books", ofType: "json")
+        let pathString = Bundle.main.path(forResource: "books", ofType: "json")
         
         // check if pathString is not nil, else return an empty array
         guard pathString != nil else {

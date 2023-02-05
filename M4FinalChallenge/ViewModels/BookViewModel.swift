@@ -18,6 +18,6 @@ class BookViewModel: ObservableObject {
         self.books = service.getLocalData()
         
         // you can also code it like this if you don't need to use "service" var more than once
-        // self.recipes = DataService.getLocalData()
+        // self.books = DataService.getLocalData()
     }
 }

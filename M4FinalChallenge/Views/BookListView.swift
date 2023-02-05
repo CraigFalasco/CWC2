@@ -15,22 +15,23 @@ struct BookListView: View {
         VStack {
             
             Text("My Library")
+                .font(.largeTitle)
+                .bold()
+                .padding(.top, 20)
             
-            ScrollView {
+            List {
                 LazyVStack {
                     ForEach(model.books) { b in
-                        
-                        HStack(spacing: 20.0) {
-                            
+
                             Image(b.imageID)
                                 .resizable()
                                 .scaledToFill()
-                                .frame(width: 75, height: 75, alignment: .center)
+                                .frame(width: 200, height: 300, alignment: .center)
                                 .clipped()
                                 .cornerRadius(10)
                             
                             Text(b.title + " by " + b.author)
-                        }
+                        
                     }
                 }
             }
@@ -39,7 +40,7 @@ struct BookListView: View {
     }
 }
 
-struct BookListView_Previews: PreviewProvider {
+struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         BookListView()
             .environmentObject(BookViewModel())
