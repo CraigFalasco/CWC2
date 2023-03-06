@@ -10,6 +10,14 @@ import SwiftUI
 struct RecipeListView: View {
     
     @EnvironmentObject var model:RecipeVuModel
+    private var title: String {
+        if model.selectedCategory == nil {
+            return Constants.defaultListFilter
+        }
+        else {
+            return model.selectedCategory!
+        }
+    }
     
     var body: some View {
         
@@ -17,7 +25,7 @@ struct RecipeListView: View {
             
             VStack(alignment: .leading) {
                 
-                Text("All Recipes")
+                Text(title)
                     .font(.largeTitle)
                     .bold()
                     .padding(.top, 20)
@@ -26,26 +34,31 @@ struct RecipeListView: View {
                     LazyVStack (alignment: .leading) {
                         ForEach(model.recipes) { r in
                             
-                            NavigationLink(
-                                destination: RecipeDetail(recipe:r),
-                                label: {
-                                    HStack(spacing: 20.0) {
-                                        Image(r.image)
-                                            .resizable()
-                                            .scaledToFill()
-                                            .frame(width: 75, height: 75, alignment: .center)
-                                            .clipped()
-                                            .cornerRadius(10)
-                                        VStack (alignment: .leading) {
-                                            Text(r.name)
-                                                .foregroundColor(.black)
-                                                .font(Font.custom("Avenir Heavy", size: 16))
-                                            
-                                            RecipeHighlights(highlights: r.highlights)
-                                                .foregroundColor(.black)
+                            if model.selectedCategory == nil ||
+                                model .selectedCategory == Constants.defaultListFilter ||
+                                model.selectedCategory != nil && r.category == model.selectedCategory {
+                                
+                                NavigationLink(
+                                    destination: RecipeDetail(recipe:r),
+                                    label: {
+                                        HStack(spacing: 20.0) {
+                                            Image(r.image)
+                                                .resizable()
+                                                .scaledToFill()
+                                                .frame(width: 75, height: 75, alignment: .center)
+                                                .clipped()
+                                                .cornerRadius(10)
+                                            VStack (alignment: .leading) {
+                                                Text(r.name)
+                                                    .foregroundColor(.black)
+                                                    .font(Font.custom("Avenir Heavy", size: 16))
+                                                
+                                                RecipeHighlights(highlights: r.highlights)
+                                                    .foregroundColor(.black)
+                                            }
                                         }
-                                    }
-                                })
+                                    })
+                            }
                         }
                     }
                 }

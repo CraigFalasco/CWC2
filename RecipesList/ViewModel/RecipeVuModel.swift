@@ -10,12 +10,18 @@ import Foundation
 class RecipeVuModel: ObservableObject {
     
     @Published var recipes = [Recipe]()
+    @Published var categories = Set<String>()
+    @Published var selectedCategory: String?
     
     init() {
         
         // use the data service we created to get the json data
         let service = DataService()
         self.recipes = service.getLocalData()
+        self.categories = Set(self.recipes.map { r in
+            return r.category
+        })
+        self.categories.update(with: Constants.defaultListFilter)
         
         // you can also code it like this if you don't need to use "service" var more than once
         // self.recipes = DataService.getLocalData()
